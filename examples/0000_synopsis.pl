@@ -3,37 +3,35 @@ use warnings;
 {
     use Alien::FLTK;
     use ExtUtils::CBuilder;
-    my $AF     = Alien::FLTK->new();
-    my $CC     = ExtUtils::CBuilder->new();
-    my $source = 'hello_world.cxx';
-    open(my $FH, '>', $source) || die '...';
+    my $AF  = Alien::FLTK->new();
+    my $CC  = ExtUtils::CBuilder->new();
+    my $SRC = 'hello_world.cxx';
+    open(my $FH, '>', $SRC) || die '...';
     syswrite($FH, <<'') || die '...'; close $FH;
-      #include <fltk/Window.h>
-      #include <fltk/Widget.h>
-      #include <fltk/run.h>
-      using namespace fltk;
+      #include <FL/Fl.H>
+      #include <FL/Fl_Window.H>
+      #include <FL/Fl_Box.H>
       int main(int argc, char **argv) {
-        Window *window = new Window(300, 180);
-        window->begin();
-        Widget *box = new Widget(20, 40, 260, 100, "Hello, World!");
-        box->box(UP_BOX);
-        box->labelfont(HELVETICA_BOLD_ITALIC);
+        Fl_Window *window = new Fl_Window(300,180);
+        Fl_Box *box = new Fl_Box(FL_UP_BOX, 20, 40, 260, 100, "Hello, World!");
+        box->labelfont(FL_BOLD + FL_ITALIC);
         box->labelsize(36);
-        box->labeltype(SHADOW_LABEL);
+        box->labeltype(FL_SHADOW_LABEL);
         window->end();
         window->show(argc, argv);
-        return run();
-      }
+        return Fl::run();
+    }
 
-    my $obj = $CC->compile('C++'                => 1,
-                           source               => $source,
+    my $OBJ = $CC->compile('C++'                => 1,
+                           source               => $SRC,
                            include_dirs         => [$AF->include_dirs()],
                            extra_compiler_flags => $AF->cxxflags()
     );
-    my $exe = $CC->link_executable(objects            => $obj,
-                                   extra_linker_flags => $AF->ldflags());
-    print system('./' . $exe) ? 'Aww...' : 'Yay!';
-    END { unlink grep defined, $source, $obj, $exe; }
+    my $EXE =
+        $CC->link_executable(objects            => $OBJ,
+                             extra_linker_flags => $AF->ldflags());
+    print system('./' . $EXE) ? 'Aww...' : 'Yay!';
+    END { unlink grep defined, $SRC, $OBJ, $EXE; }
 }
 
 =pod

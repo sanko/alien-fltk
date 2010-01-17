@@ -3,7 +3,7 @@ package Alien::FLTK;
     use strict;
     use warnings;
     use File::Spec::Functions qw[catdir rel2abs canonpath];
-    our $BASE = 0; our $SVN = 6985; our $DEV = 0; our $VERSION = sprintf('%d.%05d' . ($DEV ? '_%03d' : ''), $BASE, $SVN, $DEV);
+    our $BASE = 0; our $SVN = 7008; our $DEV = 0; our $VERSION = sprintf('%d.%05d' . ($DEV ? '_%03d' : ''), $BASE, $SVN, $DEV);
     my $_config = eval do { local $/; <DATA> }
         or warn
         "Couldn't load Alien::FLTK configuration data: $@\n Using defaults";
@@ -126,44 +126,42 @@ Alien::FLTK - Build and use the Fast Light Toolkit binaries
 
 =head1 Description
 
-This distribution builds and installs libraries for the (experimental)
-C<2.0.x> branch of the FLTK GUI toolkit.
+This distribution builds and installs libraries for the (stable) C<1.3.x>
+branch of the FLTK GUI toolkit.
 
 =head1 Synopsis
 
     use Alien::FLTK;
     use ExtUtils::CBuilder;
-    my $AF     = Alien::FLTK->new();
-    my $CC     = ExtUtils::CBuilder->new();
-    my $source = 'hello_world.cxx';
-    open(my $FH, '>', $source) || die '...';
+    my $AF  = Alien::FLTK->new();
+    my $CC  = ExtUtils::CBuilder->new();
+    my $SRC = 'hello_world.cxx';
+    open(my $FH, '>', $SRC) || die '...';
     syswrite($FH, <<'') || die '...'; close $FH;
-      #include <fltk/Window.h>
-      #include <fltk/Widget.h>
-      #include <fltk/run.h>
-      using namespace fltk;
+      #include <FL/Fl.H>
+      #include <FL/Fl_Window.H>
+      #include <FL/Fl_Box.H>
       int main(int argc, char **argv) {
-        Window *window = new Window(300, 180);
-        window->begin();
-        Widget *box = new Widget(20, 40, 260, 100, "Hello, World!");
-        box->box(UP_BOX);
-        box->labelfont(HELVETICA_BOLD_ITALIC);
+        Fl_Window *window = new Fl_Window(300,180);
+        Fl_Box *box = new Fl_Box(FL_UP_BOX, 20, 40, 260, 100, "Hello, World!");
+        box->labelfont(FL_BOLD + FL_ITALIC);
         box->labelsize(36);
-        box->labeltype(SHADOW_LABEL);
+        box->labeltype(FL_SHADOW_LABEL);
         window->end();
         window->show(argc, argv);
-        return run();
-      }
+        return Fl::run();
+    }
 
-    my $obj = $CC->compile('C++'                => 1,
-                           source               => $source,
+    my $OBJ = $CC->compile('C++'                => 1,
+                           source               => $SRC,
                            include_dirs         => [$AF->include_dirs()],
                            extra_compiler_flags => $AF->cxxflags()
     );
-    my $exe = $CC->link_executable(objects            => $obj,
-                                   extra_linker_flags => $AF->ldflags());
-    print system('./' . $exe) ? 'Aww...' : 'Yay!';
-    END { unlink grep defined, $source, $obj, $exe; }
+    my $EXE =
+        $CC->link_executable(objects            => $OBJ,
+                             extra_linker_flags => $AF->ldflags());
+    print system('./' . $EXE) ? 'Aww...' : 'Yay!';
+    END { unlink grep defined, $SRC, $OBJ, $EXE; }
 
 =head1 Constructor
 
@@ -355,7 +353,8 @@ http://github.com/sanko/alien-fltk/ and you are invited to fork it.
 
 =head2 Examples
 
-Please see the L<Synopsis|/"Synopsis"> and the files in the C</examples/>.
+Please see the L<Synopsis|Alien::FLTK/"Synopsis"> and the files in the
+C</examples/>.
 
 =head2 Bugs
 
@@ -367,7 +366,7 @@ Please see L<Alien::FLTK::Todo|Alien::FLTK::Todo>
 
 =head1 See Also
 
-L<FLTK|FLTK>
+L<FLTK|FLTK>, L<Alien::FLTK2|Alien::FLTK2>
 
 =head1 Acknowledgments
 
