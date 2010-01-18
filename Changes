@@ -1,4 +1,4 @@
-Version 0. | In the not too distant future | 88da95e
+Version 0.XXXXX | In the not too distant future | 43b2654
 
     Internal/Behavioral Changes:
      * Alien::FLTK can build both the unstable (2.0.x) and stable (1.3.x)
@@ -94,7 +94,7 @@ Version 0.068410 | 2009-08-22 07:10:42Z (Sat, 22 Aug 2009) | ecfdb18
 
 _ -.-. .... .- -. --. . ... _________________________________________
 For more information, see the commit log:
-    http://github.com/sanko/alien-fltk/commits/master
+    http://github.com/sanko/alien-fltk/commits/fltk-1.3.x
 
 $Ver$ from git $Rev$
 $Date$
