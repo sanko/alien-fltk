@@ -104,8 +104,6 @@ $mb->notes(config_path  => 'share/config.yml');
 #################################### 'Dynamic' values used by build system ###
 $mb->notes(svn => $mb->dist_version =~ m[\.0?+(\d+)]);
 $mb->notes(branch                     => '1.3.x');
-$mb->notes(md5_gz                     => 'adfc4746c7b2bf7e895612d118ab8f2f');
-$mb->notes(md5_bz2                    => '7589b3523045b7c059026de21564e68d');
 $mb->notes(include_path_images        => '');
 $mb->notes(include_path_compatability => '');
 $mb->notes(headers_path               => 'FL');

@@ -5,7 +5,13 @@ package Alien::FLTK;
     use File::Spec::Functions qw[catdir rel2abs canonpath];
     use File::ShareDir;
     use YAML::Tiny;
-    our $BASE = 0; our $SVN = 7008; our $DEV = 0; our $VERSION = sprintf('%d.%05d' . ($DEV ? '_%03d' : ''), $BASE, $SVN, $DEV);
+    our $BASE = 0; our $SVN = 7008; our $DEV = 1; our $VERSION = sprintf('%d.%05d' . ($DEV ? '_%03d' : ''), $BASE, $SVN, $DEV);
+
+    sub md5 {
+        return {gz  => 'adfc4746c7b2bf7e895612d118ab8f2f',
+                bz2 => '7589b3523045b7c059026de21564e68d'
+        };
+    }
     my ($basedir)
         = (grep { -d $_ && -f catdir($_, 'config.yml') } map { rel2abs($_) } (
                 eval { File::ShareDir::dist_dir('Alien-FLTK') }, '../share/',
