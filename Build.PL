@@ -76,12 +76,11 @@ my $mb = $class->new(
         keywords =>
             [qw[Alien FLTK Fast Light Toolkit widget FL GUI UI window 1.3.x]],
         resources => {
-              bugtracker => 'http://github.com/sanko/alien-fltk/issues',
-              ChangeLog =>
-                  'http://github.com/sanko/alien-fltk/commits/master',
-              homepage => 'http://sanko.github.com/fltk-perl/',
-              license => 'http://www.perlfoundation.org/artistic_license_2_0',
-              repository => 'http://github.com/sanko/alien-fltk'
+             bugtracker => 'http://github.com/sanko/alien-fltk/issues',
+             ChangeLog => 'http://github.com/sanko/alien-fltk/commits/master',
+             homepage  => 'http://sanko.github.com/fltk-perl/',
+             license => 'http://www.perlfoundation.org/artistic_license_2_0',
+             repository => 'http://github.com/sanko/alien-fltk'
         }
     },
     needs_compiler => 1,        # adds ExtUtils::CBuilder to build_requires
