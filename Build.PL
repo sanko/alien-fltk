@@ -100,7 +100,7 @@ $mb->notes(gmtime            => scalar gmtime);
 $mb->notes(threads           => $Config{'useithreads'} ? 1 : 0);
 $mb->notes(snapshot_dir => 'working/snapshot/');    # archive location
 $mb->notes(extract_dir  => 'working/extract/');     # extracted source
-$mb->notes(config_path  => 'share/config.yml');
+$mb->notes(config_yml   => 'share/config.yml');
 #################################### 'Dynamic' values used by build system ###
 $mb->notes(svn => $mb->dist_version =~ m[\.0*(\d+)]);
 $mb->notes(branch                     => '1.3.x');
@@ -110,7 +110,7 @@ $mb->notes(headers_path               => 'FL');
 $mb->notes(ldflags                    => ' -lfltk ');
 $mb->notes(ldflags_image =>
            ' -lfltk_images -lfltk_png -lfltk_z -lfltk_images -lfltk_jpeg ');
-$mb->notes(use_cairo => undef);    # TODO - MacOS
+$mb->notes(use_cairo => undef);                     # TODO - MacOS
 $mb->notes(
     libs_source => {
         fltk => {
