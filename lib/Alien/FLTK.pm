@@ -20,8 +20,8 @@ package Alien::FLTK;
             ($self->{'basedir'})
                 = (grep { -d $_ && -f catdir($_, 'config.yml') }
                        map { rel2abs($_) } (
-                              eval { File::ShareDir::dist_dir('Alien-FLTK') },
-                              'share', '../share', '../../share'
+                             eval { File::ShareDir::dist_dir('Alien-FLTK') },
+                             'share', '../share', '../../share'
                        )
                 );
         }
