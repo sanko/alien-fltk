@@ -109,9 +109,6 @@ $mb->notes(include_path_images        => '');
 $mb->notes(include_path_compatability => '');
 $mb->notes(headers_path               => 'FL');
 $mb->notes(use_cairo => 0);                         # TODO - MacOS
-$mb->notes(ldflags                    => ' -lfltk ');
-$mb->notes(ldflags_image =>
-           ' -lfltk_images -lfltk_png -lfltk_z -lfltk_images -lfltk_jpeg ');
 $mb->notes(
     libs_source => {
         fltk => {
