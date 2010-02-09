@@ -73,7 +73,7 @@ package Alien::FLTK;
         my $LDSTATIC = sprintf '-L%s %s/libfltk%s %s', $libdir, $libdir,
             $SHAREDSUFFIX,
             ($self->config->{'ldflags'} ? $self->config->{'ldflags'} : '');
-        my $LDFLAGS = "-L$libdir -lfltk "
+        my $LDFLAGS = '-lfltk'
             . ($self->config->{'ldflags'} ? $self->config->{'ldflags'} : '');
         my $LIBS = sprintf '%s/libfltk%s', $libdir, $SHAREDSUFFIX;
         if (grep {m[forms]} @args) {
@@ -98,8 +98,9 @@ package Alien::FLTK;
             $LDSTATIC = sprintf '%s/libfltk_images%s %s %s',
                 $libdir, $SHAREDSUFFIX, $img_libs, $LDSTATIC;
         }
-        return (
-             ((grep {m[static]} @args) ? $LDSTATIC : $LDFLAGS) . ' -lsupc++');
+        return (  "-L$libdir"
+                . ((grep {m[static]} @args) ? $LDSTATIC : $LDFLAGS)
+                . ' -lsupc++');
     }
 
     sub capabilities {
