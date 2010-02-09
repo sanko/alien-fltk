@@ -98,7 +98,7 @@ package Alien::FLTK;
             $LDSTATIC = sprintf '%s/libfltk_images%s %s %s',
                 $libdir, $SHAREDSUFFIX, $img_libs, $LDSTATIC;
         }
-        return (  "-L$libdir"
+        return (  "-L$libdir "
                 . ((grep {m[static]} @args) ? $LDSTATIC : $LDFLAGS)
                 . ' -lsupc++');
     }
