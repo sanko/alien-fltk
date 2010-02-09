@@ -118,7 +118,7 @@ package Alien::FLTK;
 
 =head1 NAME
 
-Alien::FLTK - Build and use the Fast Light Toolkit binaries
+Alien::FLTK - Build and use stable C<1.3.x> branch of the Fast Light Toolkit
 
 =head1 Description
 
