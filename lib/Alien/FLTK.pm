@@ -288,11 +288,14 @@ with MinGW. Further testing is needed for other setups.
 =item X11/*nix
 
 X11-based systems require several development packages. On Debian, these may
-be installed with...
+be installed with:
 
-  > sudo apt-get install libx11-dev
-  > sudo apt-get install libxi-dev
-  > sudo apt-get install libxcursor-dev
+    > sudo apt-get install libx11-dev
+    > sudo apt-get install libxi-dev
+
+Additionally, the optional XCurser lib may be installed with:
+
+    > sudo apt-get install libxcursor-dev
 
 =item Darwin/OSX
 

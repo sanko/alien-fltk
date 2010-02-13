@@ -1,4 +1,22 @@
-Version 0.07008017 | 2010-02-10 07:17:35Z (Wed, 10 Feb 2010) | 23611a7
+Version 0.07063 | 2010-02-13 16:53:16Z (Sat, 13 Feb 2010) | bfbff6e
+
+     Resolved Issues/Bug Fixes:
+     * Rather than X11, OSX/Darwin uses Carbon for graphics so we no longer
+       search for X11-related libs
+
+    Documentation/Sample Code/Test Suite:
+     * The XCursor lib is now noted as being optional in POD and README
+
+    Notes:
+     * This dist also includes other OS X 'fixes' which are completly untested
+       and will probably fail
+     * Upgraded fltk lib to svn r7063. See the following changelogs for more:
+       - http://fltk.org/articles.php?L967 (r7020 snapshot)
+       - http://fltk.org/articles.php?L968 (r7034 snapshot)
+       - http://fltk.org/articles.php?L970 (r7037 snapshot)
+       - http://fltk.org/articles.php?L973 (r7063 snapshot)
+
+Version 0.07008017 | 2010-02-10 07:18:40Z (Wed, 10 Feb 2010) | 364f273
 
      Resolved Issues/Bug Fixes:
      * X11-related libs are now linked in the correct, working order (I hope)
