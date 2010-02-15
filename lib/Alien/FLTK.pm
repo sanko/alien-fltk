@@ -3,7 +3,7 @@ package Alien::FLTK;
     use strict;
     use warnings;
     use File::Spec::Functions qw[catdir rel2abs canonpath];
-    our $BASE = 0; our $SVN = 7063; our $DEV = 0; our $VERSION = sprintf('%d.%05d' . ($DEV ? (($DEV < 0 ? '' : '_') . '%03d') : ('')), $BASE, $SVN, abs $DEV);
+    our $BASE = 0; our $SVN = 7063; our $DEV = -1; our $VERSION = sprintf('%d.%05d' . ($DEV ? (($DEV < 0 ? '' : '_') . '%03d') : ('')), $BASE, $SVN, abs $DEV);
 
     sub _md5 {
         return {gz  => 'ed4c2462a8a2210dcc78dabf769074eb',
@@ -73,7 +73,7 @@ package Alien::FLTK;
         my $LDSTATIC = sprintf '-L%s %s/libfltk%s %s', $libdir, $libdir,
             $SHAREDSUFFIX,
             ($self->config->{'ldflags'} ? $self->config->{'ldflags'} : '');
-        my $LDFLAGS = '-lfltk'
+        my $LDFLAGS = '-lfltk '
             . ($self->config->{'ldflags'} ? $self->config->{'ldflags'} : '');
         my $LIBS = sprintf '%s/libfltk%s', $libdir, $SHAREDSUFFIX;
         if (grep {m[forms]} @args) {
