@@ -3,11 +3,11 @@ package Alien::FLTK;
     use strict;
     use warnings;
     use File::Spec::Functions qw[catdir rel2abs canonpath];
-    our $BASE = 0; our $SVN = 7063; our $DEV = -1; our $VERSION = sprintf('%d.%05d' . ($DEV ? (($DEV < 0 ? '' : '_') . '%03d') : ('')), $BASE, $SVN, abs $DEV);
+    our $BASE = 0; our $SVN = 7694; our $DEV = -1; our $VERSION = sprintf('%d.%05d' . ($DEV ? (($DEV < 0 ? '' : '_') . '%03d') : ('')), $BASE, $SVN, abs $DEV);
 
     sub _md5 {
-        return {gz  => 'ed4c2462a8a2210dcc78dabf769074eb',
-                bz2 => 'd1f1c81855ff0f70dc5fcdc8e1ab86b0'
+        return {gz  => '8514a73fcbd30cc77b89e0a3ecb8f231',
+                bz2 => '562ed04c9865459cd5a7398a8fa54b17'
         };
     }
     sub _unique_file { return 'src/Fl.cxx' }
@@ -20,8 +20,8 @@ package Alien::FLTK;
             ($self->{'basedir'})
                 = (grep { -d $_ && -f catdir($_, 'config.yml') }
                        map { rel2abs($_) } (
-                              eval { File::ShareDir::dist_dir('Alien-FLTK') },
-                              'share', '../share', '../../share'
+                        'share', '../share', '../../share',
+                        eval { File::ShareDir::dist_dir('Alien-FLTK') }
                        )
                 );
         }
@@ -127,7 +127,7 @@ package Alien::FLTK;
 
 =head1 NAME
 
-Alien::FLTK - Build and use stable C<1.3.x> branch of the Fast Light Toolkit
+Alien::FLTK - Build and use the stable C<1.3.x> branch of the Fast Light Toolkit
 
 =head1 Description
 
@@ -253,11 +253,8 @@ Include flags to use FLTK's forms compatibility layer.
 
     my $revision = $AF->branch( );
 
-Returns the SVN brance of the source L<Alien::FLTK|Alien::FLTK> was built
-with.
-
-Currently, L<Alien::FLTK|Alien::FLTK> defaults to the 2.0.x branch but it is
-capable of building the more stable 1.3.x branch.
+Returns the SVN branch of the source L<Alien::FLTK|Alien::FLTK> was built
+with. For the C<2.0.x> branch of fltk, see L<Alien::FLTK|Alien::FLTK2>.
 
 =head2 C<revision>
 

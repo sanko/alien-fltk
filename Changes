@@ -1,4 +1,9 @@
-Version 0.07063001 | 2010-02-13 16:54:31Z (Sat, 13 Feb 2010) | 0bfc53b
+Version 0.07694001 | 2010-09-04 02:46:27Z (Sat, 04 Sep 2010) | c952bf0
+
+    Notes:
+     * Builds against r7694 of the 1.3.x branch of fltk
+
+Version 0.07063001 | 2010-02-15 22:06:30Z (Mon, 15 Feb 2010) | b0766e6
 
     Resolved Issues/Bug Fixes:
      * Untested CygWin configuration and build fixes
@@ -9,7 +14,7 @@ Version 0.07063001 | 2010-02-13 16:54:31Z (Sat, 13 Feb 2010) | 0bfc53b
 
 Version 0.07063 | 2010-02-13 16:54:31Z (Sat, 13 Feb 2010) | 0bfc53b
 
-     Resolved Issues/Bug Fixes:
+    Resolved Issues/Bug Fixes:
      * Rather than X11, OSX/Darwin uses Carbon for graphics so we no longer
        search for X11-related libs
 
@@ -130,7 +135,7 @@ Version 0.068410 | 2009-08-22 07:10:42Z (Sat, 22 Aug 2009) | ecfdb18
 
 _ -.-. .... .- -. --. . ... _________________________________________
 For more information, see the commit log:
-    http://github.com/sanko/alien-fltk/commits/master
+    http://github.com/sanko/alien-fltk/commits
 
 $Ver$ from git $Rev$
 $Date$
