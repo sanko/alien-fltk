@@ -60,6 +60,14 @@ my $mb = $class->new(
                        'Module::Build'      => 0.36,
                        'ExtUtils::CBuilder' => 0.27,
                        perl                 => 5.008000,
+                       ($is_developer
+                        ? ('CPAN::Meta::Converter' => 0,
+                           'CPAN::Meta::Validator' => 0,
+                           JSON                    => 0,
+                           'Perl::Tidy'            => 0
+                            )
+                        : ()
+                       ),
                        (  ($^O eq 'VMS') ? ('VMS::DCLsym' => 0)
                         : ()
                        ),
@@ -74,15 +82,20 @@ my $mb = $class->new(
     no_index   => {directory => [qw[t example inc share]]},
     test_files => \@tests,
     meta_merge => {
-        generated_by => 'Conversion, software version 7.0',
         keywords =>
             [qw[Alien FLTK Fast Light Toolkit widget FL GUI UI window 1.3.x]],
         resources => {
-             bugtracker => 'http://github.com/sanko/alien-fltk/issues',
-             ChangeLog => 'http://github.com/sanko/alien-fltk/commits/master',
+             bugtracker => {
+                           web => 'http://github.com/sanko/alien-fltk/issues',
+                           mailto => 'sanko@cpan.org'
+             },
+             repository => {url  => 'git://github.com/sanko/alien-fltk.git',
+                            web  => 'http://github.com/sanko/alien-fltk',
+                            type => 'git'
+             },
+             ChangeLog => 'http://github.com/sanko/alien-fltk/commits',
              homepage  => 'http://sanko.github.com/fltk-perl/',
-             license => 'http://www.perlfoundation.org/artistic_license_2_0',
-             repository => 'http://github.com/sanko/alien-fltk'
+             license => ['http://www.perlfoundation.org/artistic_license_2_0']
         }
     },
     needs_compiler => 1,        # adds ExtUtils::CBuilder to build_requires
