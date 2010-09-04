@@ -56,13 +56,17 @@ my $mb = $class->new(
                         : ()
                        ),
     },
-    add_to_cleanup => [qw[Alien-FLTK-* src/* share/*],
-                       map {"*$_"} (
-                             '.' . $Config{'so'}, $Config{'_o'}, $Config{'_a'}
-                       )
+    add_to_cleanup => [
+               qw[Alien-FLTK-* src/* share/*],
+               map {"*$_"} ('.' . $Config{'so'}, $Config{'_o'}, $Config{'_a'})
     ],
-    no_index   => {directory => [qw[t example inc share]]},
-    test_files => \@tests,
+    no_index         => {directory => [qw[t example inc share]]},
+    test_files       => \@tests,
+    test_file_exts   => ['.t'],
+    use_tap_harness  => 1,
+    tap_harness_args => {jobs  => 9,
+                         rules => {par => ['*']}
+    },
     meta_merge => {
         keywords =>
             [qw[Alien FLTK Fast Light Toolkit widget FL GUI UI window 1.3.x]],
