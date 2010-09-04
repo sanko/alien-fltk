@@ -20,28 +20,9 @@ my $mb = $class->new(
     license     => 'artistic_2',
     dist_author => 'Sanko Robinson <sanko@cpan.org>',
     requires    => {
-        'Archive::Extract'   => 0,
-        base                 => 0,
-        Carp                 => 0,
-        Config               => 0,
-        Cwd                  => 0,
-        'Digest::MD5'        => 0,
-        'File::Basename'     => 0,
-        'File::Fetch'        => 0,
-        'File::Find'         => 0,
-        'File::Path'         => 2.07,
-        'File::ShareDir'     => 0,
-        'File::Spec'         => 0,          # used in A::F proper
-        'File::Temp'         => 0,
-        'Test::More'         => 0.88,
-        'Module::Build'      => 0.36,
-        'ExtUtils::CBuilder' => 0.27,
-        perl                 => 5.008000,
-        (  ($^O eq 'VMS') ? ('VMS::DCLsym' => 0)
-         : ()
-        ),
-        'File::Find::Rule' => 0,
-        'YAML::Tiny'       => 0
+                 'File::ShareDir'        => 0,
+                 'YAML::Tiny'            => 0,
+                 'File::Spec::Functions' => 0
     },
     build_requires => {'Archive::Extract'   => 0,
                        base                 => 0,
@@ -49,17 +30,20 @@ my $mb = $class->new(
                        Config               => 0,
                        Cwd                  => 0,
                        'Digest::MD5'        => 0,
+                       'ExtUtils::CBuilder' => 0.27,
                        'File::Basename'     => 0,
                        'File::Fetch'        => 0,
                        'File::Find'         => 0,
+                       'File::Find::Rule'   => 0,
                        'File::Path'         => 2.07,
                        'File::ShareDir'     => 0,
                        'File::Spec'         => 0,
                        'File::Temp'         => 0,
+                       'TAP::Harness'       => 3.18,
                        'Test::More'         => 0.88,
                        'Module::Build'      => 0.36,
-                       'ExtUtils::CBuilder' => 0.27,
                        perl                 => 5.008000,
+                       'YAML::Tiny'         => 0,
                        ($is_developer
                         ? ('CPAN::Meta::Converter' => 0,
                            'CPAN::Meta::Validator' => 0,
@@ -71,8 +55,6 @@ my $mb = $class->new(
                        (  ($^O eq 'VMS') ? ('VMS::DCLsym' => 0)
                         : ()
                        ),
-                       'File::Find::Rule' => 0,
-                       'YAML::Tiny'       => 0
     },
     add_to_cleanup => [qw[Alien-FLTK-* src/* share/*],
                        map {"*$_"} (
