@@ -122,21 +122,22 @@ $mb->notes(
                  (map { 'Fl_' . $_ }
                       qw[Adjuster Bitmap Browser Browser_ Browser_load Box
                       Button Chart Check_Browser Check_Button Choice Clock
-                      Color_Chooser Counter Dial Double_Window File_Browser
-                      File_Chooser File_Chooser2 File_Icon File_Input Group
-                      Help_View Image Input Input_ Light_Button Menu Menu_
-                      Menu_Bar Sys_Menu_Bar Menu_Button Menu_Window Menu_add
-                      Menu_global Multi_Label Overlay_Window Pack Pixmap
-                      Positioner Preferences Progress Repeat_Button
-                      Return_Button Roller Round_Button Scroll Scrollbar
-                      Shared_Image Single_Window Slider Table Table_Row Tabs
-                      Text_Buffer Text_Display Text_Editor Tile Tiled_Image
-                      Tree Tree_Item Tree_Item_Array Tree_Prefs Tooltip
-                      Valuator Value_Input Value_Output Value_Slider Widget
-                      Window Window_fullscreen Window_hotspot Window_iconize
-                      Wizard XBM_Image XPM_Image abort add_idle arg compose
-                      display get_key get_system_colors grab lock own_colormap
-                      visual x]
+                      Color_Chooser Counter Dial Device Double_Window
+                      File_Browser File_Chooser File_Chooser2 File_Icon
+                      File_Input Group Help_View Image Input Input_
+                      Light_Button Menu Menu_ Menu_Bar Sys_Menu_Bar
+                      Menu_Button Menu_Window Menu_add Menu_global Multi_Label
+                      Native_File_Chooser Overlay_Window Pack Paged_Device
+                      Pixmap Positioner Preferences Printer Progress
+                      Repeat_Button Return_Button Roller Round_Button Scroll
+                      Scrollbar Shared_Image Single_Window Slider Table
+                      Table_Row Tabs Text_Buffer Text_Display Text_Editor Tile
+                      Tiled_Image Tree Tree_Item Tree_Item_Array Tree_Prefs
+                      Tooltip Valuator Value_Input Value_Output Value_Slider
+                      Widget Window Window_fullscreen Window_hotspot
+                      Window_iconize Wizard XBM_Image XPM_Image abort add_idle
+                      arg compose display get_key get_system_colors grab lock
+                      own_colormap visual x]
                  ),
                  (map { 'filename_' . $_ }
                       qw[absolute expand ext isdir list match setext]
@@ -149,7 +150,8 @@ $mb->notes(
                       overlay_visual plastic read_image rect round_box
                       rounded_box set_font set_fonts scroll_area shadow_box
                       shortcut show_colormap symbols vertex utf8]
-                 )
+                 ),
+                 (qw[screen_xywh ps_image]),
                 ),
                 (map { 'xutf8/' . $_ . '.c' }
                      qw[case is_right2left is_spacing keysym2Ucs utf8Input
@@ -168,8 +170,8 @@ $mb->notes(
             directory => 'src',
             source    => [
                 map { $_ . '.cxx' }
-                    qw[Fl_Gl_Choice Fl_Gl_Overlay Fl_Gl_Window
-                    freeglut_geometry freeglut_stroke_mono_roman
+                    qw[Fl_Gl_Choice Fl_Gl_Overlay Fl_Gl_Device_Plugin
+                    Fl_Gl_Window freeglut_geometry freeglut_stroke_mono_roman
                     freeglut_stroke_roman freeglut_teapot gl_draw gl_start
                     glut_compatability glut_font]
             ]
