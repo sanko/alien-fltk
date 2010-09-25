@@ -3,11 +3,11 @@ package Alien::FLTK;
     use strict;
     use warnings;
     use File::Spec::Functions qw[catdir rel2abs canonpath];
-    our $BASE = 0; our $SVN = 7694; our $DEV = -1; our $VERSION = sprintf('%d.%05d' . ($DEV ? (($DEV < 0 ? '' : '_') . '%03d') : ('')), $BASE, $SVN, abs $DEV);
+    our $BASE = 0; our $SVN = 7704; our $DEV = 0; our $VERSION = sprintf('%d.%05d' . ($DEV ? (($DEV < 0 ? '' : '_') . '%03d') : ('')), $BASE, $SVN, abs $DEV);
 
     sub _md5 {
-        return {gz  => '8514a73fcbd30cc77b89e0a3ecb8f231',
-                bz2 => '562ed04c9865459cd5a7398a8fa54b17'
+        return {bz2 => '0ae224b9786ad642bdafcfd1a6072799',
+                gz  => 'aa0da99ada120f1123d03fd137f94884'
         };
     }
     sub _unique_file { return 'src/Fl.cxx' }

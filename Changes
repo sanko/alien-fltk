@@ -1,4 +1,28 @@
-Version 0.07694001 | 2010-09-04 02:46:27Z (Sat, 04 Sep 2010) | c952bf0
+Version 0.07704001 | 2010-09-18 01:55:22Z (Sat, 18 Sep 2010) | 70e72ea
+
+    Resolved Issues/Bug Fixes:
+     * #define symbols for dirent location were malformed
+
+Version 0.07694001 | 2010-09-04 03:56:05Z (Sat, 04 Sep 2010) | 45bb2d7
+
+    Selected Upstream Changes:
+     * [r7704] Fixed Windows class name (xclass) setup and caching mechanism.
+       This was not yet completely converted to UTF-8. Cleaned up related
+       code, removed old comments.
+       Tested and confirmed that the xclass() setup works and that different
+       icons can be set for different window classes (as it was in FLTK
+       1.1.10).
+     * [r7697] Full support of UTF-8 text for PostScript printing/output in 2
+         ways:
+          - Latin characters (unicode <= 17F) and a few other symbols, among
+            which the ?\226?\130?\172 (Euro), are output using vectorial fonts
+          - All other characters are output as a bitmap copy of their
+            offscreen rendition.
+     * [r7696] Simpler PostScript output of Fl_Bitmap objects
+     * [r7695] PostScript output of Fl_Pixmap objects: accept now arbitrarily
+       large pixmaps
+
+Version 0.07694001 | 2010-09-04 03:56:05Z (Sat, 04 Sep 2010) | 45bb2d7
 
     Notes:
      * Builds against r7694 of the 1.3.x branch of fltk
