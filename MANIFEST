@@ -13,8 +13,9 @@ inc/MBX/Alien/FLTK/Utility.pm
 lib/Alien/FLTK.pm
 LICENSE
 MANIFEST			This list of files
-META.json
 README
 t/0000_use/0001_use.t
 t/0000_use/0002_exe.t
 TODO.pod
+META.yml
+META.json

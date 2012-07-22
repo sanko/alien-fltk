@@ -41,14 +41,13 @@ my $mb = $class->new(
                        'File::Temp'         => 0,
                        'TAP::Harness'       => 3.18,
                        'Test::More'         => 0.88,
-                       'Module::Build'      => 0.36,
+                       'Module::Build'      => 0.40,
                        perl                 => 5.008000,
                        'YAML::Tiny'         => 0,
-                       ($is_developer
-                        ? ('CPAN::Meta::Converter' => 0,
-                           'CPAN::Meta::Validator' => 0,
-                           JSON                    => 0,
-                           'Perl::Tidy'            => 0
+                       ($is_developer ? ('CPAN::Meta::Converter' => 0,
+                                         'CPAN::Meta::Validator' => 0,
+                                         JSON                    => 0,
+                                         'Perl::Tidy'            => 0
                             )
                         : ()
                        ),
@@ -56,7 +55,8 @@ my $mb = $class->new(
                         : ()
                        ),
     },
-    add_to_cleanup => [
+    configure_requires => {'Module::Build' => 0.40},
+    add_to_cleanup     => [
                qw[Alien-FLTK-* src/* share/*],
                map {"*$_"} ('.' . $Config{'so'}, $Config{'_o'}, $Config{'_a'})
     ],
@@ -110,27 +110,28 @@ $mb->notes(
                        qw[fl_call_main flstring scandir numericsort vsnprintf
                        fl_utf]
                 ),
-                (map { $_ . '.cxx' } 'Fl',
-                 'screen_xywh',
-                 (map { 'Fl_' . $_ }
-                      qw[Adjuster Bitmap Browser Browser_ Browser_load Box
-                      Button Chart Check_Browser Check_Button Choice Clock
-                      Color_Chooser Counter Dial Device Double_Window
-                      File_Browser File_Chooser File_Chooser2 File_Icon
-                      File_Input Group Help_View Image Input Input_
-                      Light_Button Menu Menu_ Menu_Bar Sys_Menu_Bar
-                      Menu_Button Menu_Window Menu_add Menu_global Multi_Label
-                      Native_File_Chooser Overlay_Window Pack Paged_Device
-                      Pixmap Positioner Preferences Printer Progress
-                      Repeat_Button Return_Button Roller Round_Button Scroll
-                      Scrollbar Shared_Image Single_Window Slider Table
-                      Table_Row Tabs Text_Buffer Text_Display Text_Editor Tile
-                      Tiled_Image Tree Tree_Item Tree_Item_Array Tree_Prefs
-                      Tooltip Valuator Value_Input Value_Output Value_Slider
-                      Widget Window Window_fullscreen Window_hotspot
-                      Window_iconize Wizard XBM_Image XPM_Image abort add_idle
-                      arg compose display get_key get_system_colors grab lock
-                      own_colormap visual x]
+                (map { $_ . '.cxx' } (
+                     'Fl',
+                     map { 'Fl_' . $_ }
+                         qw[Adjuster Bitmap Browser Browser_ Browser_load Box
+                         Button Chart Check_Browser Check_Button Choice Clock
+                         Color_Chooser Counter Dial Device Double_Window
+                         File_Browser File_Chooser File_Chooser2 File_Icon
+                         File_Input Group Help_View Image Input Input_
+                         Light_Button Menu Menu_ Menu_Bar Sys_Menu_Bar
+                         Menu_Button Menu_Window Menu_add Menu_global
+                         Multi_Label Native_File_Chooser Overlay_Window Pack
+                         Paged_Device Pixmap Positioner Preferences Printer
+                         Progress Repeat_Button Return_Button Roller
+                         Round_Button Scroll Scrollbar Shared_Image
+                         Single_Window Slider Table Table_Row Tabs Text_Buffer
+                         Text_Display Text_Editor Tile Tiled_Image Tree
+                         Tree_Item Tree_Item_Array Tree_Prefs Tooltip Valuator
+                         Value_Input Value_Output Value_Slider Widget Window
+                         Window_fullscreen Window_hotspot Window_iconize
+                         Wizard XBM_Image XPM_Image abort add_idle arg compose
+                         display get_key get_system_colors grab lock
+                         own_colormap visual x]
                  ),
                  (map { 'filename_' . $_ }
                       qw[absolute expand ext isdir list match setext]
@@ -230,7 +231,7 @@ CPAN ID: SANKO
 
 =head1 License and Legal
 
-Copyright (C) 2009 by Sanko Robinson E<lt>sanko@cpan.orgE<gt>
+Copyright (C) 2009-2012 by Sanko Robinson E<lt>sanko@cpan.orgE<gt>
 
 This program is free software; you can redistribute it and/or modify it under
 the terms of The Artistic License 2.0. See the F<LICENSE> file included with
