@@ -71,21 +71,14 @@ my $mb = $class->new(
         keywords =>
             [qw[Alien FLTK Fast Light Toolkit widget FL GUI UI window 1.3.x]],
         resources => {
-             bugtracker => {
-                           web => 'http://github.com/sanko/alien-fltk/issues',
-                           mailto => 'sanko@cpan.org'
-             },
-             repository => {url  => 'git://github.com/sanko/alien-fltk.git',
-                            web  => 'http://github.com/sanko/alien-fltk',
-                            type => 'git'
-             },
-             ChangeLog => 'http://github.com/sanko/alien-fltk/commits',
-             homepage  => 'http://sanko.github.com/fltk-perl/',
-             license => ['http://www.perlfoundation.org/artistic_license_2_0']
+                    bugtracker => 'http://github.com/sanko/alien-fltk/issues',
+                    repository => 'git://github.com/sanko/alien-fltk.git',
+                    ChangeLog  => 'http://github.com/sanko/alien-fltk/commits'
         }
     },
-    needs_compiler => 1,        # adds ExtUtils::CBuilder to build_requires
-    share_dir      => 'share'
+    needs_compiler => 1,         # adds ExtUtils::CBuilder to build_requires
+    share_dir      => 'share',
+    create_readme  => 1
 );
 
 #$mb->notes(use_x     => 0);           # TODO - find_lib
