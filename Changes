@@ -1,3 +1,12 @@
+Version 0.09635001 | 2012-07-22 08:11:29Z (Sun, 22 Jul 2012) | 26b4b31
+
+    Resolved Issues/Bug Fixes:
+     * Define FL_LIBRARY during build
+     * Work around Win32 bug
+
+    Notes:
+     * Builds against r9635 of the 1.3.x branch of fltk
+
 Version 0.07704001 | 2010-09-18 01:55:22Z (Sat, 18 Sep 2010) | 70e72ea
 
     Resolved Issues/Bug Fixes:
