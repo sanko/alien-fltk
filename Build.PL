@@ -55,7 +55,7 @@ my $mb = $class->new(
                         : ()
                        ),
     },
-    configure_requires => {'Module::Build' => 0.40},
+    configure_requires => {'Module::Build' => 0.3624, 'YAML::Tiny' => 1.46},
     add_to_cleanup     => [
                qw[Alien-FLTK-* src/* share/*],
                map {"*$_"} ('.' . $Config{'so'}, $Config{'_o'}, $Config{'_a'})
