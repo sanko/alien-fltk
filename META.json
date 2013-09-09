@@ -79,6 +79,17 @@
       }
    },
    "release_status" : "stable",
-   "version" : "v1.0.1"
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/sanko/alien-fltk/issues"
+      },
+      "homepage" : "https://github.com/sanko/alien-fltk",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/sanko/alien-fltk.git",
+         "web" : "https://github.com/sanko/alien-fltk"
+      }
+   },
+   "version" : "v1.3.0"
 }
 

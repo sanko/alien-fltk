@@ -202,7 +202,7 @@ sub Build_PL {
 	my $meta = get_meta();
 	printf "Creating new 'Build' script for '%s' version '%s'\n", $meta->name, $meta->version;
 	my $dir = $meta->name eq 'MBTFLTK' ? '' : "use lib 'inc';";
-	write_file('Build', 'raw', "#!perl\n$dir\nuse MBTFLTK;\nBuild();\n");
+	write_file('Build', 'raw', "#!perl\n$dir\nuse MBTFLTK;\n\$|++;\nBuild();\n");
 	make_executable('Build');
 	my @env = defined $ENV{PERL_MB_OPT} ? split_like_shell($ENV{PERL_MB_OPT}) : ();
 	write_file('_build_params', 'utf8', encode_json([ @env, @ARGV ]));
