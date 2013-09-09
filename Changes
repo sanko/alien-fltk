@@ -1,0 +1,6 @@
+Revision history for Perl extension Alien-FLTK
+
+{{$NEXT}}
+
+    - Reboot! Installer based on Module::Build::Tiny
+
