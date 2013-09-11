@@ -1,6 +1,7 @@
 requires 'perl', '5.008001';
 
 on configure => sub {
+    requires 'Archive::Extract';
     requires 'CPAN::Meta', '0';
     requires 'Exporter',  '5.57';
     requires 'ExtUtils::CBuilder';
@@ -10,29 +11,38 @@ on configure => sub {
     requires 'ExtUtils::InstallPaths', '0.002';
     requires 'ExtUtils::ParseXS';
     requires 'File::Basename';
+    requires 'File::Copy';
+    requires 'File::Copy::Recursive';
     requires 'File::Find';
     requires 'File::Path';
+    requires 'File::pushd';
+    requires 'File::ShareDir';
+    requires 'File::Slurp';
     requires 'File::Spec::Functions';
     requires 'Getopt::Long';
+    requires 'HTTP::Tiny';
     requires 'JSON::PP', '2',
     requires 'Pod::Man';
     requires 'TAP::Harness';
-    requires 'HTTP::Tiny';
-    requires 'Archive::Extract';
-    requires 'File::pushd';
-    requires 'File::Copy';
-    requires 'File::Copy::Recursive';
 };
 
 on build => sub {
-    requires 'HTTP::Tiny';
     requires 'Archive::Extract';
-    requires 'File::pushd';
     requires 'File::Copy';
     requires 'File::Copy::Recursive';
+    requires 'File::pushd';
+    requires 'File::ShareDir';
+    requires 'File::Slurp';
+    requires 'File::Spec::Functions';
+    requires 'HTTP::Tiny';
+    requires 'JSON::PP', '2';
 };
 
 on test => sub {
+    requires 'File::ShareDir';
+    requires 'File::Slurp';
+    requires 'File::Spec::Functions';
+    requires 'JSON::PP', '2';
     requires 'Test::More', '0.98';
 };
 
@@ -42,7 +52,7 @@ on develop => sub {
 
 on runtime => sub {
     requires 'File::ShareDir';
+    requires 'File::Slurp';
     requires 'File::Spec::Functions';
     requires 'JSON::PP', '2';
-    requires 'File::Slurp';
 };

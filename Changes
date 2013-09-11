@@ -2,5 +2,8 @@ Revision history for Perl extension Alien-FLTK
 
 {{$NEXT}}
 
-    - Reboot! Installer based on Module::Build::Tiny
+    - Resolve missing prereq (I hope)
 
+v1.3.0  2013-09-09 17:09:22 EDT
+
+    - Reboot! Installer based on Module::Build::Tiny
