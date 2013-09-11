@@ -2,6 +2,9 @@
 /_build/
 /Build
 /blib
+/share
+Build.bat
+/_build_params
 
 /carton.lock
 /.carton/
