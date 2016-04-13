@@ -44,11 +44,11 @@ sub ldflags {
 
 =head1 NAME
 
-Alien::FLTK - Build and use the stable 1.3.x branch of the Fast Light Toolkit
+Alien::FLTK - Build and use the stable 1.3.3 branch of the Fast Light Toolkit
 
 =head1 Description
 
-This distribution builds and installs libraries for the (stable) C<1.3.x>
+This distribution builds and installs libraries for the (stable) C<1.3.3>
 branch of the FLTK GUI toolkit.
 
 =head1 Synopsis
@@ -260,7 +260,7 @@ CPAN ID: SANKO
 
 =head1 License and Legal
 
-Copyright (C) 2009-2012 by Sanko Robinson E<lt>sanko@cpan.orgE<gt>
+Copyright (C) 2009-2016 by Sanko Robinson E<lt>sanko@cpan.orgE<gt>
 
 This program is free software; you can redistribute it and/or modify it under
 the terms of The Artistic License 2.0. See the F<LICENSE> file included with

@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/sanko/alien-fltk.svg?branch=master)](https://travis-ci.org/sanko/alien-fltk)
 # NAME
 
 Alien::FLTK - Build and use the stable 1.3.x branch of the Fast Light Toolkit
@@ -46,14 +47,14 @@ branch of the FLTK GUI toolkit.
 # Constructor
 
 There are no per-object configuration options as of this version, but there
-may be in the future, so any new code using [Alien::FLTK](http://search.cpan.org/perldoc?Alien::FLTK) should
+may be in the future, so any new code using [Alien::FLTK](https://metacpan.org/pod/Alien::FLTK) should
 create objects with the `new` constructor.
 
     my $AF = Alien::FLTK->new( );
 
 # Methods
 
-After creating a new [Alien::FLTK](http://search.cpan.org/perldoc?Alien::FLTK) object, use the following
+After creating a new [Alien::FLTK](https://metacpan.org/pod/Alien::FLTK) object, use the following
 methods to gather information:
 
 ## `include_dirs`
@@ -109,7 +110,7 @@ Prerequisites differ by system...
 
 - Win32
 
-    The fltk libs and [Alien::FLTK](http://search.cpan.org/perldoc?Alien::FLTK) both build right out of the box
+    The fltk libs and [Alien::FLTK](https://metacpan.org/pod/Alien::FLTK) both build right out of the box
     with MinGW. Further testing is needed for other setups.
 
 - X11/\*nix
@@ -130,7 +131,7 @@ Prerequisites differ by system...
 
 ## Installation
 
-The distribution is based on [Module::Build](http://search.cpan.org/perldoc?Module::Build), so use the
+The distribution is based on [Module::Build](https://metacpan.org/pod/Module::Build), so use the
 following procedure:
 
     > perl Build.PL
@@ -144,8 +145,8 @@ following procedure:
 
     http://github.com/sanko/alien-fltk/issues
 
-    Please only report [Alien::FLTK](http://search.cpan.org/perldoc?Alien::FLTK) related bugs to this tracker.
-    For [FLTK](http://search.cpan.org/perldoc?FLTK) issues, use http://github.com/sanko/fltk-perl/issues/
+    Please only report [Alien::FLTK](https://metacpan.org/pod/Alien::FLTK) related bugs to this tracker.
+    For [FLTK](https://metacpan.org/pod/FLTK) issues, use http://github.com/sanko/fltk-perl/issues/
 
 - Commit Log
 
@@ -153,19 +154,19 @@ following procedure:
 
 - Homepage:
 
-    http://sanko.github.com/fltk-perl/ is the homepage of the [FLTK](http://search.cpan.org/perldoc?FLTK)
+    http://sanko.github.com/fltk-perl/ is the homepage of the [FLTK](https://metacpan.org/pod/FLTK)
     project.
 
 - License:
 
     http://www.perlfoundation.org/artistic\_license\_2\_0
 
-    See the [License and Legal](#License and Legal) section of this document.
+    See the [License and Legal](#license-and-legal) section of this document.
 
 - Mailing List
 
-    Once I find someone to host a list for the [FLTK](http://search.cpan.org/perldoc?FLTK) project, I'll use it
-    for [Alien::FLTK](http://search.cpan.org/perldoc?Alien::FLTK) too.
+    Once I find someone to host a list for the [FLTK](https://metacpan.org/pod/FLTK) project, I'll use it
+    for [Alien::FLTK](https://metacpan.org/pod/Alien::FLTK) too.
 
 - Repository
 
@@ -173,7 +174,7 @@ following procedure:
 
 ## Examples
 
-Please see the [Synopsis](http://search.cpan.org/perldoc?Alien::FLTK#Synopsis) and the files in the
+Please see the [Synopsis](https://metacpan.org/pod/Alien::FLTK#Synopsis) and the files in the
 `/examples/`.
 
 ## Bugs
@@ -182,11 +183,11 @@ Numerous, I'm sure.
 
 ## To Do
 
-Please see [Alien::FLTK::Todo](http://search.cpan.org/perldoc?Alien::FLTK::Todo)
+Please see [Alien::FLTK::Todo](https://metacpan.org/pod/Alien::FLTK::Todo)
 
 # See Also
 
-[FLTK](http://search.cpan.org/perldoc?FLTK), [Alien::FLTK2](http://search.cpan.org/perldoc?Alien::FLTK2)
+[FLTK](https://metacpan.org/pod/FLTK), [Alien::FLTK2](https://metacpan.org/pod/Alien::FLTK2)
 
 # Acknowledgments
 
@@ -194,13 +195,13 @@ Please see [Alien::FLTK::Todo](http://search.cpan.org/perldoc?Alien::FLTK::Todo)
 
 # Author
 
-Sanko Robinson <sanko@cpan.org> - http://sankorobinson.com/
+Sanko Robinson &lt;sanko@cpan.org> - http://sankorobinson.com/
 
 CPAN ID: SANKO
 
 # License and Legal
 
-Copyright (C) 2009-2012 by Sanko Robinson <sanko@cpan.org>
+Copyright (C) 2009-2012 by Sanko Robinson &lt;sanko@cpan.org>
 
 This program is free software; you can redistribute it and/or modify it under
 the terms of The Artistic License 2.0. See the `LICENSE` file included with
@@ -212,5 +213,5 @@ Creative Commons Attribution-Share Alike 3.0 License. See
 http://creativecommons.org/licenses/by-sa/3.0/us/legalcode.  For
 clarification, see http://creativecommons.org/licenses/by-sa/3.0/us/.
 
-[Alien::FLTK](http://search.cpan.org/perldoc?Alien::FLTK) is based in part on the work of the FLTK project.
+[Alien::FLTK](https://metacpan.org/pod/Alien::FLTK) is based in part on the work of the FLTK project.
 See http://www.fltk.org/.

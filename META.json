@@ -4,7 +4,7 @@
       "Sanko Robinson <sanko@cpan.org> - http://sankorobinson.com/"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Milla version v1.0.4, Dist::Zilla version 4.300038, CPAN::Meta::Converter version 2.132510",
+   "generated_by" : "Minilla/v3.0.1, CPAN::Meta::Converter version 2.150005",
    "license" : [
       "artistic_2"
    ],
@@ -20,7 +20,9 @@
          "inc",
          "share",
          "eg",
-         "examples"
+         "examples",
+         "author",
+         "builder"
       ]
    },
    "prereqs" : {
@@ -41,6 +43,7 @@
          "requires" : {
             "Archive::Extract" : "0",
             "CPAN::Meta" : "0",
+            "Devel::CheckBin" : "0",
             "Exporter" : "5.57",
             "ExtUtils::CBuilder" : "0",
             "ExtUtils::Config" : "0.003",
@@ -59,14 +62,19 @@
             "File::pushd" : "0",
             "Getopt::Long" : "0",
             "HTTP::Tiny" : "0",
-            "JSON::PP" : "2",
+            "JSON::PP" : "0",
+            "Module::Build::Tiny" : "0.035",
             "Pod::Man" : "0",
             "TAP::Harness" : "0"
          }
       },
       "develop" : {
          "requires" : {
-            "Test::Pod" : "1.41"
+            "Test::CPAN::Meta" : "0",
+            "Test::MinimumVersion::Fast" : "0.04",
+            "Test::PAUSE::Permissions" : "0.04",
+            "Test::Pod" : "1.41",
+            "Test::Spellunker" : "v0.2.7"
          }
       },
       "runtime" : {
@@ -88,7 +96,7 @@
          }
       }
    },
-   "release_status" : "stable",
+   "release_status" : "unstable",
    "resources" : {
       "bugtracker" : {
          "web" : "https://github.com/sanko/alien-fltk/issues"
@@ -96,10 +104,10 @@
       "homepage" : "https://github.com/sanko/alien-fltk",
       "repository" : {
          "type" : "git",
-         "url" : "https://github.com/sanko/alien-fltk.git",
+         "url" : "git://github.com/sanko/alien-fltk.git",
          "web" : "https://github.com/sanko/alien-fltk"
       }
    },
-   "version" : "v1.3.1"
+   "version" : "v1.3.3",
+   "x_serialization_backend" : "JSON::PP version 2.27300"
 }
-
