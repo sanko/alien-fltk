@@ -138,8 +138,8 @@ sub build_lib {
         print " Done\nConfigure...\n";
         chdir($ae->extract_path);
         system q[sh ./configure];
-        $libinfo{cflags}     = `sh ./fltk-config --cflags`;
-        $libinfo{cxxflags}   = `sh ./fltk-config --cxxflags`;
+        $libinfo{cflags}     = `sh ./fltk-config --cflags --optim`;
+        $libinfo{cxxflags}   = `sh ./fltk-config --cxxflags --optim`;
         $libinfo{ldflags}    = `sh ./fltk-config --ldflags`;
         $libinfo{ldflags_gl} = `sh ./fltk-config --ldflags --use-gl`;
         $libinfo{ldflags_gl_images}
