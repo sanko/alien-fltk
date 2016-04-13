@@ -3,6 +3,7 @@ requires 'perl', '5.008001';
 on configure => sub {
     requires 'Archive::Extract';
     requires 'CPAN::Meta', '0';
+    requires 'Devel::CheckBin';
     requires 'Exporter',  '5.57';
     requires 'ExtUtils::CBuilder';
     requires 'ExtUtils::Config', '0.003';

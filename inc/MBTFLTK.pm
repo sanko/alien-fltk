@@ -20,6 +20,7 @@ use Archive::Extract;
 use File::pushd;
 use File::Copy;
 use File::Copy::Recursive qw[dircopy];
+use Devel::CheckBin qw[check_bin];
 
 sub write_file {
     my ($filename, $mode, $content) = @_;
@@ -147,7 +148,11 @@ sub build_lib {
 
         # XXX - The following block is a mess!!!
         chdir 'src';
-        system q[gmake -ns > build.sh] || system q[make -ns > build.sh];
+        my $gmake = check_bin('gmake');
+        my $make  = check_bin('make');
+        printf "Checking for gmake... %s\n", ($gmake ? 'yes' : 'no');
+        printf "Checking for make... %s\n",  ($make  ? 'yes' : 'no');
+        system(($gmake ? 'g' : '') . q[make -ns > build.sh]);
         system q[sh build.sh];
         chdir '..';
         my $archdir = catdir($cwd, qw[share]);

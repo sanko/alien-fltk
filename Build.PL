@@ -10,8 +10,10 @@ use Module::Build::Tiny 0.035;
 
 use Devel::CheckBin;
 
-check_bin('sh');use lib 'inc'; use MBTFLTK; ('1');
 check_bin('sh');
+use lib 'inc';
+use MBTFLTK;
+('1');
 
 Build_PL();
 
