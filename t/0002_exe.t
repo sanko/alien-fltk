@@ -37,7 +37,7 @@ END
 my $OBJ = $CC->compile('C++'                => 1,
                        source               => $SRC,
                        include_dirs         => [$AF->include_dirs()],
-                       extra_compiler_flags => $AF->cxxflags()
+                       extra_compiler_flags => $AF->cxxflags() . ' -fno-exceptions'
 );
 ok($OBJ, 'Compile with FLTK headers');
 my $EXE =
