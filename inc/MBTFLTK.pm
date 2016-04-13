@@ -77,14 +77,15 @@ sub get_lib {
     {
         print "Finding most recent version...";
         my $response = HTTP::Tiny->new->get($index);
-        if ($response->{success}) {
-            my ($version) = reverse sort ($response->{content} =~ /$snaps/g);
+        if (0 && $response->{success}) {
+			# Snapshots don't contain fltk-config script
+            my ($version) = sort {$b <=> $a} ($response->{content} =~ /$snaps/g);
             $location = $index . 'fltk-1.3.x-r'.$version.'.tar.gz';
             print " r$version\n";
         }
         else {
             print " Hrm. Grabbing latest stable release\n";
-            $location = 'http://fltk.org/pub/fltk/1.3.2/fltk-1.3.2-source.tar.gz';
+            $location = 'http://fltk.org/pub/fltk/1.3.3/fltk-1.3.3-source.tar.gz';
         }
     }
     my  $file  = basename($location);
@@ -115,13 +116,13 @@ sub build_lib {
         exit print " Fail! " . $ae->error if ! $ae->extract();
         print " Done\nConfigure...\n";
         chdir($ae->extract_path);
-        system q[sh configure];
-        $libinfo{cflags} = `sh fltk-config --cflags` ;
-        $libinfo{cxxflags} = `sh fltk-config --cxxflags`;
-        $libinfo{ldflags} = `sh fltk-config --ldflags` ;
-        $libinfo{ldflags_gl} =     `sh fltk-config --ldflags --use-gl` ;
-        $libinfo{ldflags_gl_images} = `sh fltk-config --ldflags --use-gl --use-images` ;
-        $libinfo{ldflags_images} = `sh fltk-config --ldflags --use-images` ;
+        system q[sh ./configure];
+        $libinfo{cflags} = `sh ./fltk-config --cflags` ;
+        $libinfo{cxxflags} = `sh ./fltk-config --cxxflags`;
+        $libinfo{ldflags} = `sh ./fltk-config --ldflags` ;
+        $libinfo{ldflags_gl} =     `sh ./fltk-config --ldflags --use-gl` ;
+        $libinfo{ldflags_gl_images} = `sh ./fltk-config --ldflags --use-gl --use-images` ;
+        $libinfo{ldflags_images} = `sh ./fltk-config --ldflags --use-images` ;
 
         # XXX - The following block is a mess!!!
         chdir 'src';

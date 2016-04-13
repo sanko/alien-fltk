@@ -2,6 +2,7 @@ Revision history for Perl extension Alien-FLTK
 
 {{$NEXT}}
 
+    - Build with stable 1.3.3 release of FLTK
     - Resolve missing prereq (I hope)
 
 v1.3.0  2013-09-09 17:09:22 EDT
