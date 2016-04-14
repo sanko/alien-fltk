@@ -152,8 +152,9 @@ sub build_lib {
         my $make  = can_run('make');
         printf "Checking for gmake... %s\n", ($gmake ? 'yes' : 'no');
         printf "Checking for make... %s\n",  ($make  ? 'yes' : 'no');
-        system(($gmake ? 'g' : '') . q[make -ns > build.sh]);
-        system q[sh build.sh];
+        #system(($gmake ? 'g' : '') . q[make -ns > build.sh]);
+        #system q[sh build.sh];
+        system(($gmake ? 'g' : '') . q[make -j 10]);
         chdir '..';
         my $archdir = catdir($cwd, qw[share]);
         mkpath($archdir, $options->{verbose}, oct '755') unless -d $archdir;
