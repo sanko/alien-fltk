@@ -25,7 +25,6 @@ on configure => sub {
     requires 'JSON::PP', '2',
     requires 'Pod::Man';
     requires 'TAP::Harness';
-    requires 'Capture::Tiny';
 };
 
 on build => sub {

@@ -170,10 +170,6 @@ sub build_lib {
             or die $!;
         #
 
-        for my $key (sort keys %libinfo) {
-            printf " libinfo{%s} => %s\n", $key, $libinfo{$key};
-        }
-
         write_file(catfile($archdir, qw[config.json]),
                    'utf8', encode_json(\%libinfo));
     }

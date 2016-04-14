@@ -7,21 +7,16 @@ use lib qw[blib/lib];
 use Alien::FLTK;
 use ExtUtils::CBuilder;
 $|++;
-use Capture::Tiny qw[tee_stderr];
-my ($stderr, @result) = tee_stderr \&capture;
-
-sub capture {
-    my $CC = ExtUtils::CBuilder->new(quiet => 0, config => {ld => 'g++'});
-    my $AF = Alien::FLTK->new();
-    my ($FH, $SRC)
-        = File::Temp::tempfile('alien_fltk_t0002_XXXX',
-                               TMPDIR  => 1,
-                               UNLINK  => 1,
-                               SUFFIX  => '.cxx',
-                               CLEANUP => 1
-        );
-    syswrite($FH,
-             <<'END') || BAIL_OUT("Failed to write to $SRC: $!"); close $FH;
+my $CC = ExtUtils::CBuilder->new(quiet => 1, config => {ld => 'g++'});
+my $AF = Alien::FLTK->new();
+my ($FH, $SRC)
+    = File::Temp::tempfile('alien_fltk_t0002_XXXX',
+                           TMPDIR  => 1,
+                           UNLINK  => 1,
+                           SUFFIX  => '.cxx',
+                           CLEANUP => 1
+    );
+syswrite($FH, <<'END') || BAIL_OUT("Failed to write to $SRC: $!"); close $FH;
 #include <FL/Fl.H>
 #include <FL/Fl_Window.H>
 #include <FL/Fl_Box.H>
@@ -40,24 +35,23 @@ int main(int argc, char **argv) {
   return 0;
 }
 END
-    my $OBJ = $CC->compile(
+my $OBJ = $CC->compile(
                   'C++'                => 1,
                   source               => $SRC,
                   include_dirs         => [$AF->include_dirs()],
                   extra_compiler_flags => $AF->cxxflags() . ' -fno-exceptions'
+);
+ok($OBJ, 'Compile with FLTK headers');
+my $EXE =
+    $CC->link_executable(objects            => $OBJ,
+                         extra_linker_flags => '-L'
+                             . $AF->library_path . ' '
+                             . $AF->ldflags()
+                             . ' -lstdc++ '
     );
-    ok($OBJ, 'Compile with FLTK headers');
-    my $EXE =
-        $CC->link_executable(
-         objects            => $OBJ,
-         extra_linker_flags => '-L' . $AF->library_path . ' ' . $AF->ldflags() . ' -lstdc++ '
-        );
-    ok($EXE,          'Link exe with fltk 1.3.x');
-    ok(!system($EXE), sprintf 'Run exe');
-    unlink $OBJ, $EXE, $SRC;
-}
-diag $stderr;
-diag $_ for @result;
+ok($EXE,          'Link exe with fltk 1.3.x');
+ok(!system($EXE), sprintf 'Run exe');
+unlink $OBJ, $EXE, $SRC;
 
 =pod
 
@@ -69,7 +63,7 @@ CPAN ID: SANKO
 
 =head1 License and Legal
 
-Copyright (C) 2009 by Sanko Robinson E<lt>sanko@cpan.orgE<gt>
+Copyright (C) 2009-2016 by Sanko Robinson E<lt>sanko@cpan.orgE<gt>
 
 This program is free software; you can redistribute it and/or modify it under
 the terms of The Artistic License 2.0. See the F<LICENSE> file included with
