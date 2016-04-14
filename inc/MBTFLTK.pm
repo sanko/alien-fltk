@@ -169,6 +169,11 @@ sub build_lib {
         dircopy rel2abs('lib'), catdir($archdir, 'lib')
             or die $!;
         #
+
+        for my $key (keys %libinfo) {
+            print " libinfo{%s} => %s\n", $key, $libinfo{$key};
+        }
+
         write_file(catfile($archdir, qw[config.json]),
                    'utf8', encode_json(\%libinfo));
     }
