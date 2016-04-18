@@ -137,7 +137,7 @@ sub build_lib {
         exit print " Fail! " . $ae->error if !$ae->extract();
         print " Done\nConfigure...\n";
         chdir($ae->extract_path);
-        system q[sh ./configure];
+        system q[sh ./configure --enable-shared];
         $libinfo{cflags}     = `sh ./fltk-config --cflags --optim`;
         $libinfo{cxxflags}   = `sh ./fltk-config --cxxflags --optim`;
         $libinfo{ldflags}    = `sh ./fltk-config --ldflags`;
