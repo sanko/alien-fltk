@@ -1,8 +1,8 @@
 use lib '../../blib';
 $|++;
-use Alien::Fltk;
+use Alien::FLTK;
 use ExtUtils::CBuilder;
-my $AF  = Alien::Fltk->new();
+my $AF  = Alien::FLTK->new();
 my $CC  = ExtUtils::CBuilder->new();
 my $SRC = 'opengl.cxx';
 open(my $FH, '>', $SRC) || die '...';
