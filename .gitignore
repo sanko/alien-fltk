@@ -27,3 +27,12 @@ cover_db/
 MYMETA.*
 
 /Alien-FLTK-*
+
+*.tmp
+
+old-*/
+
+/.tidyall.d/
+git/
+
+.env

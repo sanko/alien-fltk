@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use File::ShareDir qw[dist_dir];
 use File::Spec::Functions qw[catdir canonpath];
-use JSON::PP 2 qw[decode_json];
+use JSON::Tiny qw[decode_json];
 use File::Slurp qw[read_file];
 use lib '../../blib/lib', '../blib/lib', 'blib/lib', 'lib';
 
