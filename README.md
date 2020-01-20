@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/sanko/alien-fltk.svg?branch=master)](https://travis-ci.org/sanko/alien-fltk)
+[![Build Status](https://travis-ci.org/sanko/alien-fltk.svg?branch=master)](https://travis-ci.org/sanko/alien-fltk) [![MetaCPAN Release](https://badge.fury.io/pl/Alien-FLTK.svg)](https://metacpan.org/release/Alien-FLTK)
 # NAME
 
 Alien::FLTK - Build and use the stable 1.3.3 branch of the Fast Light Toolkit
@@ -201,7 +201,7 @@ CPAN ID: SANKO
 
 # License and Legal
 
-Copyright (C) 2009-2016 by Sanko Robinson <sanko@cpan.org>
+Copyright (C) 2009-2020 by Sanko Robinson <sanko@cpan.org>
 
 This program is free software; you can redistribute it and/or modify it under
 the terms of The Artistic License 2.0. See the `LICENSE` file included with

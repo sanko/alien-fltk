@@ -1,5 +1,5 @@
 package Alien::FLTK;
-{ $Alien::FLTK::VERSION = 'v1.3.3'; }
+{ $Alien::FLTK::VERSION = 'v1.3.4'; }
 use strict;
 use warnings;
 use File::ShareDir qw[dist_dir];
@@ -44,11 +44,11 @@ sub ldflags {
 
 =head1 NAME
 
-Alien::FLTK - Build and use the stable 1.3.3 branch of the Fast Light Toolkit
+Alien::FLTK - Build and use the stable 1.3.x branch of the Fast Light Toolkit
 
 =head1 Description
 
-This distribution builds and installs libraries for the (stable) C<1.3.3>
+This distribution builds and installs libraries for the (stable) C<1.3.x>
 branch of the FLTK GUI toolkit.
 
 =head1 Synopsis
@@ -260,7 +260,7 @@ CPAN ID: SANKO
 
 =head1 License and Legal
 
-Copyright (C) 2009-2016 by Sanko Robinson E<lt>sanko@cpan.orgE<gt>
+Copyright (C) 2009-2020 by Sanko Robinson E<lt>sanko@cpan.orgE<gt>
 
 This program is free software; you can redistribute it and/or modify it under
 the terms of The Artistic License 2.0. See the F<LICENSE> file included with
@@ -274,7 +274,5 @@ clarification, see http://creativecommons.org/licenses/by-sa/3.0/us/.
 
 L<Alien::FLTK|Alien::FLTK> is based in part on the work of the FLTK project.
 See http://www.fltk.org/.
-
-=for git $Id: FLTK.pm fce12aa 2012-07-22 08:24:39Z sanko@cpan.org $
 
 =cut

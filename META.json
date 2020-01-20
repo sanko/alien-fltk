@@ -108,7 +108,8 @@
          "web" : "https://github.com/sanko/alien-fltk"
       }
    },
-   "version" : "v1.3.3",
+   "version" : "v1.3.4",
+   "x_authority" : "cpan:SANKO",
    "x_serialization_backend" : "JSON::PP version 4.04",
    "x_static_install" : 0
 }
