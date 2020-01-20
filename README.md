@@ -1,11 +1,11 @@
 [![Build Status](https://travis-ci.org/sanko/alien-fltk.svg?branch=master)](https://travis-ci.org/sanko/alien-fltk) [![MetaCPAN Release](https://badge.fury.io/pl/Alien-FLTK.svg)](https://metacpan.org/release/Alien-FLTK)
 # NAME
 
-Alien::FLTK - Build and use the stable 1.3.3 branch of the Fast Light Toolkit
+Alien::FLTK - Build and use the stable 1.3.x branch of the Fast Light Toolkit
 
 # Description
 
-This distribution builds and installs libraries for the (stable) `1.3.3`
+This distribution builds and installs libraries for the (stable) `1.3.x`
 branch of the FLTK GUI toolkit.
 
 # Synopsis
