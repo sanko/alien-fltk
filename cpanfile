@@ -36,7 +36,7 @@ on build => sub {
     requires 'File::Slurp';
     requires 'File::Spec::Functions';
     requires 'HTTP::Tiny';
-    requires 'JSON::PP', '2';
+    requires 'JSON::Tiny';
 };
 
 on test => sub {
@@ -55,5 +55,5 @@ on runtime => sub {
     requires 'File::ShareDir';
     requires 'File::Slurp';
     requires 'File::Spec::Functions';
-    requires 'JSON::PP', '2';
+    requires 'JSON::Tiny';
 };

@@ -9,34 +9,27 @@ use File::Slurp qw[read_file];
 use lib '../../blib/lib', '../blib/lib', 'blib/lib', 'lib';
 
 sub new {
-    my ($class, $overrides) = @_;    # XXX - overrides are unsupported
+    my ( $class, $overrides ) = @_;    # XXX - overrides are unsupported
     return
         bless decode_json(
-         read_file(
-             canonpath(
-                 catdir(dist_dir('Alien-FLTK'), 'config.json')
-             )
-         )
-        ),
-        shift;
+        read_file( canonpath( catdir( dist_dir('Alien-FLTK'), 'config.json' ) ) ) ), shift;
 }
 
 sub include_dirs {
     my ($self) = @_;
-    return canonpath(
-                   catdir(dist_dir('Alien-FLTK'), 'include'));
+    return canonpath( catdir( dist_dir('Alien-FLTK'), 'include' ) );
 }
 
 sub library_path {
     my ($self) = @_;
-    return canonpath(catdir(dist_dir('Alien-FLTK'), 'lib'));
+    return canonpath( catdir( dist_dir('Alien-FLTK'), 'lib' ) );
 }
 sub cflags   { +shift->{cflags} }
 sub cxxflags { +shift->{cxxflags} }
 
 sub ldflags {
-    my ($self, @args) = @_;
-    return +shift->{join '_', 'ldflags', sort @args};
+    my ( $self, @args ) = @_;
+    return +shift->{ join '_', 'ldflags', sort @args };
 }
 1;
 
