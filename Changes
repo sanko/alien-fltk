@@ -2,6 +2,8 @@ Revision history for Perl extension Alien-FLTK
 
 {{$NEXT}}
 
+v1.3.5 2020-01-21T03:15:23Z
+
 	- Correct JSON::Tiny prereq in cpanfile
 
 v1.3.4 2020-01-20T15:05:40Z
