@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/sanko/alien-fltk.svg?branch=master)](https://travis-ci.org/sanko/alien-fltk) [![MetaCPAN Release](https://badge.fury.io/pl/Alien-FLTK.svg)](https://metacpan.org/release/Alien-FLTK)
+[![Actions Status](https://github.com/sanko/alien-fltk/actions/workflows/linux.yaml/badge.svg)](https://github.com/sanko/alien-fltk/actions) [![Actions Status](https://github.com/sanko/alien-fltk/actions/workflows/windows.yaml/badge.svg)](https://github.com/sanko/alien-fltk/actions) [![Actions Status](https://github.com/sanko/alien-fltk/actions/workflows/osx.yaml/badge.svg)](https://github.com/sanko/alien-fltk/actions) [![Actions Status](https://github.com/sanko/alien-fltk/actions/workflows/freebsd.yaml/badge.svg)](https://github.com/sanko/alien-fltk/actions) [![MetaCPAN Release](https://badge.fury.io/pl/Alien-FLTK.svg)](https://metacpan.org/release/Alien-FLTK)
 # NAME
 
 Alien::FLTK - Build and use the stable 1.3.x branch of the Fast Light Toolkit
@@ -46,8 +46,8 @@ branch of the FLTK GUI toolkit.
 
 # Constructor
 
-There are no per-object configuration options as of this version, but there
-may be in the future, so any new code using [Alien::FLTK](https://metacpan.org/pod/Alien%3A%3AFLTK) should
+There are no per-object configuration options as of this version, but there may
+be in the future, so any new code using [Alien::FLTK](https://metacpan.org/pod/Alien%3A%3AFLTK) should
 create objects with the `new` constructor.
 
     my $AF = Alien::FLTK->new( );
@@ -68,8 +68,8 @@ process and those required for compilation.
 
     my $lib_path = $AF->library_path( );
 
-Returns the location of the private libraries we made and installed
-during the build process.
+Returns the location of the private libraries we made and installed during the
+build process.
 
 ## `cflags`
 
@@ -115,13 +115,13 @@ Prerequisites differ by system...
 
 - X11/\*nix
 
-    X11-based systems require several development packages. On Debian, these may
-    be installed with:
+    X11-based systems require several development packages. On Debian, these may be
+    installed with:
 
         > sudo apt-get install libx11-dev
         > sudo apt-get install libxi-dev
 
-    Additionally, the optional XCurser lib may be installed with:
+    Additionally, the optional XCursor lib may be installed with:
 
         > sudo apt-get install libxcursor-dev
 
@@ -145,8 +145,8 @@ following procedure:
 
     http://github.com/sanko/alien-fltk/issues
 
-    Please only report [Alien::FLTK](https://metacpan.org/pod/Alien%3A%3AFLTK) related bugs to this tracker.
-    For [FLTK](https://metacpan.org/pod/FLTK) issues, use http://github.com/sanko/fltk-perl/issues/
+    Please only report [Alien::FLTK](https://metacpan.org/pod/Alien%3A%3AFLTK) related bugs to this tracker. For
+    [FLTK](https://metacpan.org/pod/FLTK) issues, use http://github.com/sanko/fltk-perl/issues/
 
 - Commit Log
 
@@ -154,8 +154,7 @@ following procedure:
 
 - Homepage:
 
-    http://sanko.github.com/fltk-perl/ is the homepage of the [FLTK](https://metacpan.org/pod/FLTK)
-    project.
+    http://sanko.github.com/fltk-perl/ is the homepage of the [FLTK](https://metacpan.org/pod/FLTK) project.
 
 - License:
 
@@ -201,7 +200,7 @@ CPAN ID: SANKO
 
 # License and Legal
 
-Copyright (C) 2009-2020 by Sanko Robinson <sanko@cpan.org>
+Copyright (C) 2009-2022 by Sanko Robinson <sanko@cpan.org>
 
 This program is free software; you can redistribute it and/or modify it under
 the terms of The Artistic License 2.0. See the `LICENSE` file included with
@@ -210,8 +209,8 @@ clarification, see http://www.perlfoundation.org/artistic\_2\_0\_notes.
 
 When separated from the distribution, all POD documentation is covered by the
 Creative Commons Attribution-Share Alike 3.0 License. See
-http://creativecommons.org/licenses/by-sa/3.0/us/legalcode.  For
-clarification, see http://creativecommons.org/licenses/by-sa/3.0/us/.
+http://creativecommons.org/licenses/by-sa/3.0/us/legalcode.  For clarification,
+see http://creativecommons.org/licenses/by-sa/3.0/us/.
 
 [Alien::FLTK](https://metacpan.org/pod/Alien%3A%3AFLTK) is based in part on the work of the FLTK project.
 See http://www.fltk.org/.

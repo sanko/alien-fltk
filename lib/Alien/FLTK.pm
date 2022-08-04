@@ -2,38 +2,47 @@ package Alien::FLTK;
 { $Alien::FLTK::VERSION = 'v1.3.5'; }
 use strict;
 use warnings;
-use File::ShareDir qw[dist_dir];
+use File::ShareDir        qw[dist_dir];
 use File::Spec::Functions qw[catdir canonpath];
-use JSON::Tiny qw[decode_json];
-use File::Slurp qw[read_file];
+use JSON::Tiny            qw[decode_json];
+use File::Slurp           qw[read_file];
 use lib '../../blib/lib', '../blib/lib', 'blib/lib', 'lib';
 
 sub new {
-    my ( $class, $overrides ) = @_;    # XXX - overrides are unsupported
+    my ($class, $overrides) = @_;    # XXX - overrides are unsupported
     return
         bless decode_json(
-        read_file( canonpath( catdir( dist_dir('Alien-FLTK'), 'config.json' ) ) ) ), shift;
+         read_file(canonpath(catdir(dist_dir('Alien-FLTK'), 'config.json')))),
+        shift;
 }
 
 sub include_dirs {
     my ($self) = @_;
-    return canonpath( catdir( dist_dir('Alien-FLTK'), 'include' ) );
+    return canonpath(catdir(dist_dir('Alien-FLTK'), 'include'));
 }
 
 sub library_path {
     my ($self) = @_;
-    return canonpath( catdir( dist_dir('Alien-FLTK'), 'lib' ) );
+    return canonpath(catdir(dist_dir('Alien-FLTK'), 'lib'));
 }
 sub cflags   { +shift->{cflags} }
 sub cxxflags { +shift->{cxxflags} }
 
 sub ldflags {
-    my ( $self, @args ) = @_;
-    return +shift->{ join '_', 'ldflags', sort @args };
+    my ($self, @args) = @_;
+    return +shift->{join '_', 'ldflags', sort @args};
 }
 1;
 
 =pod
+
+=encoding utf-8
+
+=begin stopwords
+
+fltk MesaGL OpenGL MinGW XCursor
+
+=end stopwords
 
 =head1 NAME
 
@@ -82,8 +91,8 @@ branch of the FLTK GUI toolkit.
 
 =head1 Constructor
 
-There are no per-object configuration options as of this version, but there
-may be in the future, so any new code using L<Alien::FLTK|Alien::FLTK> should
+There are no per-object configuration options as of this version, but there may
+be in the future, so any new code using L<Alien::FLTK|Alien::FLTK> should
 create objects with the C<new> constructor.
 
     my $AF = Alien::FLTK->new( );
@@ -104,8 +113,8 @@ process and those required for compilation.
 
     my $lib_path = $AF->library_path( );
 
-Returns the location of the private libraries we made and installed
-during the build process.
+Returns the location of the private libraries we made and installed during the
+build process.
 
 =head2 C<cflags>
 
@@ -157,13 +166,13 @@ with MinGW. Further testing is needed for other setups.
 
 =item X11/*nix
 
-X11-based systems require several development packages. On Debian, these may
-be installed with:
+X11-based systems require several development packages. On Debian, these may be
+installed with:
 
     > sudo apt-get install libx11-dev
     > sudo apt-get install libxi-dev
 
-Additionally, the optional XCurser lib may be installed with:
+Additionally, the optional XCursor lib may be installed with:
 
     > sudo apt-get install libxcursor-dev
 
@@ -191,8 +200,8 @@ following procedure:
 
 http://github.com/sanko/alien-fltk/issues
 
-Please only report L<Alien::FLTK|Alien::FLTK> related bugs to this tracker.
-For L<FLTK|FLTK> issues, use http://github.com/sanko/fltk-perl/issues/
+Please only report L<Alien::FLTK|Alien::FLTK> related bugs to this tracker. For
+L<FLTK|FLTK> issues, use http://github.com/sanko/fltk-perl/issues/
 
 =item * Commit Log
 
@@ -200,8 +209,7 @@ http://github.com/sanko/alien-fltk/commits/master
 
 =item * Homepage:
 
-http://sanko.github.com/fltk-perl/ is the homepage of the L<FLTK|FLTK>
-project.
+http://sanko.github.com/fltk-perl/ is the homepage of the L<FLTK|FLTK> project.
 
 =item * License:
 
@@ -253,7 +261,7 @@ CPAN ID: SANKO
 
 =head1 License and Legal
 
-Copyright (C) 2009-2020 by Sanko Robinson E<lt>sanko@cpan.orgE<gt>
+Copyright (C) 2009-2022 by Sanko Robinson E<lt>sanko@cpan.orgE<gt>
 
 This program is free software; you can redistribute it and/or modify it under
 the terms of The Artistic License 2.0. See the F<LICENSE> file included with
@@ -262,8 +270,8 @@ clarification, see http://www.perlfoundation.org/artistic_2_0_notes.
 
 When separated from the distribution, all POD documentation is covered by the
 Creative Commons Attribution-Share Alike 3.0 License. See
-http://creativecommons.org/licenses/by-sa/3.0/us/legalcode.  For
-clarification, see http://creativecommons.org/licenses/by-sa/3.0/us/.
+http://creativecommons.org/licenses/by-sa/3.0/us/legalcode.  For clarification,
+see http://creativecommons.org/licenses/by-sa/3.0/us/.
 
 L<Alien::FLTK|Alien::FLTK> is based in part on the work of the FLTK project.
 See http://www.fltk.org/.

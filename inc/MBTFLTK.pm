@@ -9,18 +9,18 @@ use ExtUtils::Helpers 0.020
     qw/make_executable split_like_shell man1_pagename man3_pagename detildefy/;
 use ExtUtils::Install qw/pm_to_blib install/;
 use ExtUtils::InstallPaths 0.002;
-use File::Basename qw/basename dirname/;
-use File::Find ();
-use File::Path qw/mkpath/;
+use File::Basename        qw/basename dirname/;
+use File::Find            ();
+use File::Path            qw/mkpath/;
 use File::Spec::Functions qw/catfile catdir rel2abs abs2rel splitdir/;
-use Getopt::Long qw/GetOptions/;
-use JSON::Tiny qw/encode_json decode_json/;
+use Getopt::Long          qw/GetOptions/;
+use JSON::Tiny            qw/encode_json decode_json/;
 use HTTP::Tiny;
 use Archive::Extract;
 use File::pushd;
 use File::Copy;
 use File::Copy::Recursive qw[dircopy];
-use Devel::CheckBin qw[can_run];
+use Devel::CheckBin       qw[can_run];
 
 sub write_file {
     my ($filename, $mode, $content) = @_;
@@ -35,8 +35,8 @@ sub read_file {
 }
 
 sub get_meta {
-    my ($metafile) = grep { -e $_ } qw/META.json META.yml/
-        or die "No META information provided\n";
+    my ($metafile) = grep { -e $_ } qw/META.json META.yml/ or
+        die "No META information provided\n";
     return CPAN::Meta->load_file($metafile);
 }
 
@@ -59,8 +59,8 @@ sub process_xs {
         if $options->{'pureperl-only'};
     my (undef, @dirnames) = splitdir(dirname($source));
     my $file_base = basename($source, '.xs');
-    my $archdir = catdir(qw/blib arch auto/, @dirnames, $file_base);
-    my $c_file = catfile('lib', @dirnames, "$file_base.c");
+    my $archdir   = catdir(qw/blib arch auto/, @dirnames, $file_base);
+    my $c_file    = catfile('lib', @dirnames, "$file_base.c");
     require ExtUtils::ParseXS;
     ExtUtils::ParseXS::process_file(filename   => $source,
                                     prototypes => 0,
@@ -77,7 +77,7 @@ sub process_xs {
     mkpath($archdir, $options->{verbose}, oct '755') unless -d $archdir;
     return
         $builder->link(
-        objects => $ob_file,
+        objects  => $ob_file,
         lib_file =>
             catfile($archdir, "$file_base." . $options->{config}->get('dlext')
             ),
@@ -97,9 +97,10 @@ sub get_lib {
         if ($response->{success}) {
 
             # Snapshots don't contain fltk-config script
-			my $tags = decode_json $response->{content};
-			printf "\nGrabbing %s snapshot (%s)\n", $tags->[0]{name}, $tags->[0]{commit}{sha};
-			$location = $tags->[0]{tarball_url};
+            my $tags = decode_json $response->{content};
+            printf "\nGrabbing %s snapshot (%s)\n", $tags->[0]{name},
+                $tags->[0]{commit}{sha};
+            $location = $tags->[0]{tarball_url};
         }
         else {
             print " Hrm. Grabbing latest known release\n";
@@ -129,49 +130,87 @@ sub build_lib {
     if (!-d 'share') {
         mkpath('share', $options->{verbose}, oct '755') unless -d 'share';
         $dir = tempd();
-        $libinfo{archive} = get_lib($meta->custom('x_alien'));
-        print "Extracting...";
-
-        my $ae = Archive::Extract->new(archive => $libinfo{archive});
-
-        exit print " Fail! " . $ae->error if !$ae->extract();
-        print " Done\nConfigure...\n";
-        chdir($ae->extract_path);
-
-        system q[NOCONFIGURE=1 ./autogen.sh];
-        system q[sh ./configure --enable-shared];
-        $libinfo{cflags}     = `sh ./fltk-config --cflags --optim`;
-        $libinfo{cxxflags}   = `sh ./fltk-config --cxxflags --optim`;
-        $libinfo{ldflags}    = `sh ./fltk-config --ldflags`;
-        $libinfo{ldflags_gl} = `sh ./fltk-config --ldflags --use-gl`;
-        $libinfo{ldflags_gl_images}
-            = `sh ./fltk-config --ldflags --use-gl --use-images`;
-        $libinfo{ldflags_images} = `sh ./fltk-config --ldflags --use-images`;
-
-        # XXX - The following block is a mess!!!
-        chdir 'src';
-        my $gmake = can_run('gmake');
-        my $make  = can_run('make');
-        printf "Checking for gmake... %s\n", ($gmake ? 'yes' : 'no');
-        printf "Checking for make... %s\n",  ($make  ? 'yes' : 'no');
-        #system(($gmake ? 'g' : '') . q[make -ns > build.sh]);
-        #system q[sh build.sh];
-        system(($gmake ? 'g' : '') . q[make -j 10]);
-        chdir '..';
         my $archdir = catdir($cwd, qw[share]);
-        mkpath($archdir, $options->{verbose}, oct '755') unless -d $archdir;
+        warn $archdir;
+        if (0 && -d $cwd . '/inc/cfltk') {
+            chdir $cwd . '/inc/cfltk';
+            require Alien::CMake;    # Should be installed by now...
+            Alien::CMake->set_path;
+            system
+                q[cmake -B bin -S . -DCMAKE_BUILD_TYPE=Release -DOPTION_USE_SYSTEM_LIBPNG=OFF -DOPTION_USE_SYSTEM_LIBJPEG=OFF -DOPTION_USE_SYSTEM_ZLIB=OFF -DOPTION_USE_GL=OFF -DFLTK_BUILD_EXAMPLES=OFF -DFLTK_BUILD_TEST=OFF -DOPTION_USE_THREADS=ON -DOPTION_LARGE_FILE=ON -DOPTION_BUILD_HTML_DOCUMENTATION=OFF -DOPTION_BUILD_PDF_DOCUMENTATION=OFF -DCMAKE_CXX_FLAGS="-fPIC" -DCMAKE_C_FLAGS="-fPIC" -DCMAKE_SHARED_LINKER_FLAGS="-fPIC" -DCFLTK_BUILD_SHARED=ON];
+            system q[cmake --build bin --parallel];
+            warn $archdir;
+            mkpath($archdir, $options->{verbose}, oct '755')
+                unless -d $archdir;
 
-        # XXX - Copy FL  => shared dir
-        dircopy rel2abs('FL'), catdir($archdir, 'include', 'FL')
-            or die $!;
-        copy
-            rel2abs(catdir('config.h')),
-            catdir($archdir, 'include', 'config.h')
-            or die $!;
-        dircopy rel2abs('lib'), catdir($archdir, 'lib')
-            or die $!;
-        #
+            # XXX - Copy FL  => shared dir
+            dircopy rel2abs($cwd . '/inc/cfltk/bin/fltk/FL/'),
+                catdir($archdir, 'include', 'FL') or
+                die $!;
+            copy rel2abs(catdir($cwd . '/inc/cfltk/bin/fltk/config.h')),
+                catdir($archdir, 'include', 'config.h') or
+                die $!;
+            dircopy rel2abs($cwd . '/inc/cfltk/bin/fltk/lib'),
+                catdir($archdir, 'lib') or
+                die $!;
+            dircopy rel2abs($cwd . '/inc/cfltk/bin/'),
+                catdir($archdir, 'lib') or
+                die $!;
+            #
+            write_file(catfile($archdir, qw[config.json]),
+                       'utf8', encode_json(\%libinfo));
+            chdir $cwd . '/inc/cfltk/bin/fltk';
+            $libinfo{cflags}     = `sh ./fltk-config --cflags --optim`;
+            $libinfo{cxxflags}   = `sh ./fltk-config --cxxflags --optim`;
+            $libinfo{ldflags}    = `sh ./fltk-config --ldflags`;
+            $libinfo{ldflags_gl} = `sh ./fltk-config --ldflags --use-gl`;
+            $libinfo{ldflags_gl_images}
+                = `sh ./fltk-config --ldflags --use-gl --use-images`;
+            $libinfo{ldflags_images}
+                = `sh ./fltk-config --ldflags --use-images`;
+        }
+        else {
+            $libinfo{archive} = get_lib($meta->custom('x_alien'));
+            print "Extracting...";
+            my $ae = Archive::Extract->new(archive => $libinfo{archive});
+            exit print " Fail! " . $ae->error if !$ae->extract();
+            print " Done\nConfigure...\n";
+            chdir($ae->extract_path);
+            #system q[NOCONFIGURE=1 ./autogen.sh];
+            system q[sh ./autogen.sh];
+            system q[sh ./configure --enable-shared];
+            $libinfo{cflags}     = `sh ./fltk-config --cflags --optim`;
+            $libinfo{cxxflags}   = `sh ./fltk-config --cxxflags --optim`;
+            $libinfo{ldflags}    = `sh ./fltk-config --ldflags`;
+            $libinfo{ldflags_gl} = `sh ./fltk-config --ldflags --use-gl`;
+            $libinfo{ldflags_gl_images}
+                = `sh ./fltk-config --ldflags --use-gl --use-images`;
+            $libinfo{ldflags_images}
+                = `sh ./fltk-config --ldflags --use-images`;
 
+            # XXX - The following block is a mess!!!
+            chdir 'src';
+            my $gmake = can_run('gmake');
+            my $make  = can_run('make');
+            printf "Checking for gmake... %s\n", ($gmake ? 'yes' : 'no');
+            printf "Checking for make... %s\n",  ($make  ? 'yes' : 'no');
+
+            #system(($gmake ? 'g' : '') . q[make -ns > build.sh]);
+            #system q[sh build.sh];
+            system(($gmake ? 'g' : '') . q[make -j 10]);
+            chdir '..';
+            mkpath($archdir, $options->{verbose}, oct '755')
+                unless -d $archdir;
+
+            # XXX - Copy FL  => shared dir
+            dircopy rel2abs('FL'), catdir($archdir, 'include', 'FL') or
+                die $!;
+            copy rel2abs(catdir('config.h')),
+                catdir($archdir, 'include', 'config.h') or
+                die $!;
+            dircopy rel2abs('lib'), catdir($archdir, 'lib') or die $!;
+            #
+        }
         write_file(catfile($archdir, qw[config.json]),
                    'utf8', encode_json(\%libinfo));
     }
@@ -201,10 +240,9 @@ my %actions = (
         make_executable($_) for values %scripts;
         mkpath(catdir(qw/blib arch/), $opt{verbose});
         process_xs($_, \%opt) for find(qr/.xs$/, 'lib');
-
-        if (   $opt{install_paths}->install_destination('libdoc')
-            && $opt{install_paths}->is_default_installable('libdoc'))
-        {   manify($_,
+        if ($opt{install_paths}->install_destination('libdoc') &&
+            $opt{install_paths}->is_default_installable('libdoc')) {
+            manify($_,
                    catfile('blib', 'bindoc', man1_pagename($_)),
                    $opt{config}->get('man1ext'), \%opt)
                 for keys %scripts;
@@ -219,14 +257,10 @@ my %actions = (
         die "Must run `./Build build` first\n" if not -d 'blib';
         require TAP::Harness;
         my $tester = TAP::Harness->new(
-            {verbosity => $opt{verbose},
-             lib       => [
-                 map {
-                     rel2abs(catdir(qw/blib/, $_))
-                 } qw/arch lib/
-             ],
-             color => -t STDOUT
-            }
+                 {verbosity => $opt{verbose},
+                  lib => [map { rel2abs(catdir(qw/blib/, $_)) } qw/arch lib/],
+                  color => -t STDOUT
+                 }
         );
         $tester->runtests(sort +find(qr/\.t$/, 't'))->has_errors and exit 1;
     },
@@ -266,8 +300,8 @@ sub Build_PL {
                "#!perl\n$dir\nuse MBTFLTK;\n\$|++;\nBuild();\n");
     make_executable('Build');
     my @env
-        = defined $ENV{PERL_MB_OPT} ?
-        split_like_shell($ENV{PERL_MB_OPT})
+        = defined $ENV{PERL_MB_OPT}
+        ? split_like_shell($ENV{PERL_MB_OPT})
         : ();
     write_file('_build_params', 'utf8', encode_json([@env, @ARGV]));
     $meta->save(@$_) for ['MYMETA.json'], ['MYMETA.yml' => {version => 1.4}];

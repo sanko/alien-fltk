@@ -6,7 +6,7 @@ my $AF  = Alien::FLTK->new();
 my $CC  = ExtUtils::CBuilder->new();
 my $SRC = 'hello_world.cxx';
 open(my $FH, '>', $SRC) || die '...';
-syswrite($FH, <<'END') || die '...'; close $FH;
+syswrite($FH, <<'END')  || die '...'; close $FH;
 #include <FL/Fl.H>
 #include <FL/Fl_Window.H>
 #include <FL/Fl_Box.H>
@@ -26,10 +26,10 @@ my $OBJ = $CC->compile('C++'                => 1,
                        include_dirs         => [$AF->include_dirs()],
                        extra_compiler_flags => $AF->cxxflags()
 );
-my $EXE =
-    $CC->link_executable(
-         objects            => $OBJ,
-         extra_linker_flags => '-L' . $AF->library_path . ' ' . $AF->ldflags('gl')
+my $EXE
+    = $CC->link_executable(
+     objects            => $OBJ,
+     extra_linker_flags => '-L' . $AF->library_path . ' ' . $AF->ldflags('gl')
     );
 print system('./' . $EXE) ? 'Aww...' : 'Yay!';
 END { unlink grep defined, $SRC, $OBJ, $EXE; }

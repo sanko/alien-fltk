@@ -4,7 +4,7 @@
       "Sanko Robinson <sanko@cpan.org> - http://sankorobinson.com/"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v3.1.8, CPAN::Meta::Converter version 2.150010",
+   "generated_by" : "Minilla/v3.1.19, CPAN::Meta::Converter version 2.150010",
    "license" : [
       "artistic_2"
    ],
@@ -28,6 +28,7 @@
    "prereqs" : {
       "build" : {
          "requires" : {
+            "Alien::CMake" : "0",
             "Archive::Extract" : "0",
             "File::Copy" : "0",
             "File::Copy::Recursive" : "0",
@@ -104,12 +105,12 @@
       "homepage" : "https://github.com/sanko/alien-fltk",
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/sanko/alien-fltk.git",
+         "url" : "https://github.com/sanko/alien-fltk.git",
          "web" : "https://github.com/sanko/alien-fltk"
       }
    },
    "version" : "v1.3.5",
    "x_authority" : "cpan:SANKO",
-   "x_serialization_backend" : "JSON::PP version 4.04",
+   "x_serialization_backend" : "JSON::PP version 4.10",
    "x_static_install" : 0
 }

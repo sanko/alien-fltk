@@ -6,7 +6,7 @@ my $AF  = Alien::FLTK->new();
 my $CC  = ExtUtils::CBuilder->new();
 my $SRC = 'opengl.cxx';
 open(my $FH, '>', $SRC) || die '...';
-syswrite($FH, <<'END') || die '...'; close $FH;
+syswrite($FH, <<'END')  || die '...'; close $FH;
 //
 // OpenGL example showing text on a rotating 3D object.
 // erco 03/03/06
@@ -110,15 +110,15 @@ int main() {
 }
 
 END
-my $OBJ = $CC->compile(#'C++'                => 1,
-                       source               => $SRC,
-                       include_dirs         => [$AF->include_dirs()],
-                       extra_compiler_flags => $AF->cxxflags()
+my $OBJ = $CC->compile(    #'C++'                => 1,
+                        source               => $SRC,
+                        include_dirs         => [$AF->include_dirs()],
+                        extra_compiler_flags => $AF->cxxflags()
 );
-my $EXE =
-    $CC->link_executable(
-         objects            => $OBJ,
-         extra_linker_flags => '-L' . $AF->library_path . ' ' . $AF->ldflags('gl')
+my $EXE
+    = $CC->link_executable(
+     objects            => $OBJ,
+     extra_linker_flags => '-L' . $AF->library_path . ' ' . $AF->ldflags('gl')
     );
 print system('./' . $EXE) ? 'Aww...' : 'Yay!';
 END { unlink grep defined, $SRC, $OBJ, $EXE; }

@@ -42,12 +42,11 @@ my $OBJ = $CC->compile(
                   extra_compiler_flags => $AF->cxxflags() . ' -fno-exceptions'
 );
 ok($OBJ, 'Compile with FLTK headers');
-my $EXE =
-    $CC->link_executable(objects            => $OBJ,
-                         extra_linker_flags => '-L'
-                             . $AF->library_path . ' '
-                             . $AF->ldflags()
-                             . ' -lstdc++ '
+my $EXE
+    = $CC->link_executable(
+                   objects            => $OBJ,
+                   extra_linker_flags => '-L' .
+                       $AF->library_path . ' ' . $AF->ldflags() . ' -lstdc++ '
     );
 ok($EXE,          'Link exe with fltk 1.3.x');
 ok(!system($EXE), sprintf 'Run exe');

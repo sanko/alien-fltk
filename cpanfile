@@ -37,6 +37,7 @@ on build => sub {
     requires 'File::Spec::Functions';
     requires 'HTTP::Tiny';
     requires 'JSON::Tiny';
+    requires 'Alien::CMake';
 };
 
 on test => sub {
